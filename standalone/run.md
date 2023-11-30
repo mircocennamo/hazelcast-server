@@ -1,0 +1,1 @@
+java -jar .\hazelcast-server.jar -Dhazelcast.config=hazelcast.xml
