@@ -27,7 +27,7 @@ import java.util.List;
     CommandLineRunner initDatabase() {
 
         return args -> {
-            log.info("start loagind");
+            log.info("start loadind");
             initialLoader(hazelcastInstance);
             log.info("end loadind");
 
