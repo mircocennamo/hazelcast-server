@@ -15,33 +15,34 @@ import java.util.*;
 @Slf4j
 public class TargheMapStore implements MapStore<String, Rilevazione> {
     @Override
-    public void store(String s, Rilevazione rilevazione) {
-        log.debug("Non implementato");
+    public synchronized  void store(String s, Rilevazione rilevazione) {
+        log.debug("TargheMapStore store :: Non implementato");
     }
 
     @Override
-    public void storeAll(Map<String, Rilevazione> map) {
-        log.debug("Non implementato");
+    public synchronized  void storeAll(Map<String, Rilevazione> map) {
+        log.debug("TargheMapStore storeAll :: Non implementato");
     }
 
     @Override
-    public void delete(String s) {
-        log.debug("Non implementato");
+    public synchronized  void delete(String s) {
+        log.debug("TargheMapStore delete :: Non implementato");
     }
 
     @Override
-    public void deleteAll(Collection<String> collection) {
-
+    public synchronized  void deleteAll(Collection<String> collection) {
+        log.debug("TargheMapStore deleteAll :: Non implementato");
     }
 
     @Override
-    public Rilevazione load(String key) {
+    public synchronized  Rilevazione load(String key) {
+        log.debug("TargheMapStore load :: Non implementato");
        log.debug("la lettura dal DB in casi di miss in cache non è stato implementato per evitare accessi al DB");
        return null;
     }
 
     @Override
-    public Map<String, Rilevazione> loadAll(Collection<String> keys) {
+    public synchronized  Map<String, Rilevazione> loadAll(Collection<String> keys) {
         log.debug("[START] TargheMapStore loadAll keys {} "  , keys);
         Map<String, Rilevazione> result = new HashMap<>();
         for(String key:keys){
@@ -69,7 +70,8 @@ public class TargheMapStore implements MapStore<String, Rilevazione> {
 
     private Rilevazione createValue(String key){
         Rilevazione value = new Rilevazione();
-        value.setInstant(Instant.now());
+        value.setInsertAt(Date.from(Instant.now()));
+        value.setUpdateAt(null);
         value.setLicensePlate(key);
         value.setFound(false);
         return  value;

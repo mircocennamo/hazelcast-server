@@ -24,8 +24,10 @@
 		<map-store enabled="true" initial-mode="EAGER">
 			<class-name>com.avanade.cache.TargheMapStore</class-name>
 		</map-store>
+
 	</map>
-	<management-center console-enabled="true" />
+	<management-center console-enabled="true" scripting-enabled="true" data-access-enabled="true" />
+
 </hazelcast>
 
 

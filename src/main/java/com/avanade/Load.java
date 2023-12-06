@@ -1,13 +1,20 @@
 package com.avanade;
 
+import com.avanade.cache.InitialLoaderException;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
+import it.nsis.model.EnumStatus;
+import it.nsis.model.Rilevazione;
+import it.nsis.model.Status;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,29 +23,35 @@ import java.util.List;
  */
 @Configuration
 @Slf4j
- class Load {
+public class Load {
 
 
     @Autowired
     private HazelcastInstance hazelcastInstance;
     private static final String TARGHE = "TARGHE";
-
-    @Bean
-    CommandLineRunner initDatabase() {
-
-        return args -> {
-            log.info("start loadind");
-            initialLoader(hazelcastInstance);
-            log.info("end loadind");
+    private static final String STATUS = "STATUS";
 
 
-        };
-    }
 
-    public static void initialLoader(HazelcastInstance instance) {
-        IMap<String, String> targhe = instance.getMap(TARGHE);
+    public  void initialLoaderTarghe() {
+        IMap<String, Rilevazione> targhe = hazelcastInstance.getMap(TARGHE);
+        IMap<String, Status> statusIMap = hazelcastInstance.getMap(STATUS);
+       Status statusTarghe =   statusIMap.get(TARGHE);
+       if(statusTarghe!=null && (statusTarghe.getStatus()== EnumStatus.READY || statusTarghe.getStatus()== EnumStatus.RUNNING )){
+           log.debug("stato cache targhe {} non permette initial loader ", statusTarghe.getStatus());
+           throw new InitialLoaderException("Initial Loader failed ::: status " + statusTarghe.getStatus() );
+       }
+       if(statusTarghe==null){
+           statusTarghe = new Status();
+           statusTarghe.setInsertAt(LocalDateTime.now());
+       }else{
+           statusTarghe.setUpdateAt(LocalDateTime.now());
+       }
         targhe.loadAll(true);
         log.debug("Caricamento targhe terminato ");
+        statusTarghe.setStatus(EnumStatus.READY);
+        ;
+        statusIMap.put(TARGHE,statusTarghe);
 
     }
 
