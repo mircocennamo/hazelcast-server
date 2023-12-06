@@ -1,6 +1,6 @@
-package com.avanade;
+package it.nsis.hazelcast.server;
 
-import com.avanade.cache.InitialLoaderException;
+import it.nsis.hazelcast.server.cache.InitialLoaderException;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
 import it.nsis.model.EnumStatus;
@@ -8,14 +8,9 @@ import it.nsis.model.Rilevazione;
 import it.nsis.model.Status;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author mirco.cennamo on 28/11/2023

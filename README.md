@@ -1,5 +1,5 @@
 # crea un cluster hazelcast
-
+java -jar ./hazelcasr
 # Avviare il management-center
 # nella cartella standalone/management-center
 

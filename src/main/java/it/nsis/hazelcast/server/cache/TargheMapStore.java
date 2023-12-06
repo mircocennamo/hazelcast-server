@@ -1,4 +1,4 @@
-package com.avanade.cache;
+package it.nsis.hazelcast.server.cache;
 
 
 import com.hazelcast.map.MapStore;

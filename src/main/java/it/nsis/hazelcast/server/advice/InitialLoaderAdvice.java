@@ -1,6 +1,6 @@
-package com.avanade.advice;
+package it.nsis.hazelcast.server.advice;
 
-import com.avanade.cache.InitialLoaderException;
+import it.nsis.hazelcast.server.cache.InitialLoaderException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

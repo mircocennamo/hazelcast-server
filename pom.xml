@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.avanade.hazelcast</groupId>
-    <artifactId>hazelcast-server</artifactId>
+    <groupId>it.nsis.scntt.hazelcast.server</groupId>
+    <artifactId>SCNTT-hazelcast-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>hazelcast-server</name>
-    <description>Hazelcast Server for Spring Boot</description>
+    <name>SCNTT-hazelcast-server</name>
+    <description>Hazelcast Server for SCNTT</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,7 +23,7 @@
         <lombok.version>1.18.30</lombok.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <start-class>com.avanade.HazelcastServerApplication</start-class>
+        <start-class>it.nsis.hazelcast.server.ScnttHazelcastServer</start-class>
         <hazelcast.version>5.3.6</hazelcast.version>
     </properties>
 
@@ -118,7 +118,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.avanade.HazelcastServerApplication</mainClass>
+                    <mainClass>it.nsis.hazelcast.server.ScnttHazelcastServer</mainClass>
                     <layout>JAR</layout>
                 </configuration>
                 <executions>

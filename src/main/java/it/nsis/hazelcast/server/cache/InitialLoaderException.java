@@ -1,4 +1,4 @@
-package com.avanade.cache;
+package it.nsis.hazelcast.server.cache;
 
 /**
  * @author mirco.cennamo on 04/12/2023

@@ -22,7 +22,7 @@
 		<max-idle-seconds>0</max-idle-seconds>
 		<statistics-enabled>true</statistics-enabled>
 		<map-store enabled="true" initial-mode="EAGER">
-			<class-name>com.avanade.cache.TargheMapStore</class-name>
+			<class-name>it.nsis.hazelcast.server.cache.TargheMapStore</class-name>
 		</map-store>
 
 	</map>
