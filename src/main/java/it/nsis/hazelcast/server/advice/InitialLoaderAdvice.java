@@ -20,7 +20,7 @@ public class InitialLoaderAdvice {
 
 
     @ExceptionHandler({InitialLoaderException.class})
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseEntity<Object> initialLoaderExceptionHandler(RuntimeException ex) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
