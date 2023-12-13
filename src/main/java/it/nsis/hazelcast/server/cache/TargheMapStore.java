@@ -2,6 +2,7 @@ package it.nsis.hazelcast.server.cache;
 
 
 import com.hazelcast.map.MapStore;
+import io.micrometer.tracing.annotation.NewSpan;
 import it.nsis.model.Rilevazione;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,6 +43,7 @@ public class TargheMapStore implements MapStore<String, Rilevazione> {
     }
 
     @Override
+    @NewSpan(name = "SCNTT-Hazelcast-Server")
     public synchronized  Map<String, Rilevazione> loadAll(Collection<String> keys) {
         log.debug("[START] TargheMapStore loadAll keys {} "  , keys);
         Map<String, Rilevazione> result = new HashMap<>();
